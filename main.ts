@@ -4,8 +4,10 @@ import { Quest02 } from './quest02.ts'
 import { Quest03 } from './quest03.ts'
 import { Quest04 } from './quest04.ts'
 import { Quest05 } from './quest05.ts'
+import { Quest06 } from './quest06.ts'
+import { Quest07 } from './quest07.ts'
 
-const days: IQuest[] = [new Quest01(), new Quest02(), new Quest03(), new Quest04(), new Quest05()]
+const days: IQuest[] = [new Quest01(), new Quest02(), new Quest03(), new Quest04(), new Quest05(), new Quest06(), new Quest07()]
 
 type TimeEntry = {
   duration: number
