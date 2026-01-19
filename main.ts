@@ -16,9 +16,9 @@ import { Quest14 } from './quest14.ts'
 import { Quest15 } from './quest15.ts'
 import { Quest16 } from './quest16.ts'
 import { Quest17 } from './quest17.ts'
-// import { Quest18 } from './quest18.ts'
-// import { Quest19 } from './quest19.ts'
-// import { Quest20 } from './quest20.ts'
+import { Quest18 } from './quest18.ts'
+import { Quest19 } from './quest19.ts'
+import { Quest20 } from './quest20.ts'
 
 const days: IQuest[] = [
   new Quest01(),
@@ -38,9 +38,9 @@ const days: IQuest[] = [
   new Quest15(),
   new Quest16(),
   new Quest17(),
-  // new Quest18(),
-  // new Quest19(),
-  // new Quest20(),
+  new Quest18(),
+  new Quest19(),
+  new Quest20(),
 ]
 
 type TimeEntry = {
