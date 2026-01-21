@@ -32,11 +32,12 @@ export class Quest19 extends Quest<TInput> {
   }
 
   getMoves(triplets: TInput, state: TState): TState[] {
-    triplets = triplets.filter(t => t.x > state.x)
-    if (triplets.length === 0) {
+    const filtered = triplets.filter(t => t.x > state.x)
+    if (filtered.length === 0) {
       throw 'Should not get here'
     }
-    const passages = triplets.filter(t => t.x === triplets[0].x)
+    const firstX = filtered[0].x
+    const passages = filtered.filter(t => t.x === firstX)
     const newStates: TState[] = []
     for (const passage of passages) {
       const xOffset = passage.x - state.x

@@ -8,9 +8,9 @@ export abstract class Quest<T> implements IQuest {
   public quest: number
   public title: string
 
-  constructor(day: number, title?: string) {
-    this.quest = day
-    this.title = title ?? `Quest ${day}`
+  constructor(quest: number, title?: string) {
+    this.quest = quest
+    this.title = title ?? `Quest ${quest}`
   }
 
   abstract part1(input: T): number | string
@@ -20,12 +20,12 @@ export abstract class Quest<T> implements IQuest {
 
   timeStart(name: string) {
     const key = name //.toLowerCase().replace('  ', '-')
-    console.time(`day${this.quest}:${key}`)
+    console.time(`quest${this.quest}:${key}`)
   }
 
   timeEnd(name: string) {
     const key = name //.toLowerCase().replace('  ', '-')
-    console.timeLog(`day${this.quest}:${key}`, `to ${name === 'input' ? 'parse' : 'execute'} ${name} of day ${this.quest}`)
+    console.timeLog(`quest${this.quest}:${key}`, `to ${name === 'input' ? 'parse' : 'execute'} ${name} of quest ${this.quest}`)
   }
 
   readDataFile(part: number): string[] {
@@ -35,7 +35,7 @@ export abstract class Quest<T> implements IQuest {
 
   execute(): void {
     try {
-      console.log(`--- Day ${this.quest}: ${this.title} ---`)
+      console.log(`--- quest ${this.quest}: ${this.title} ---`)
 
       this.timeStart('total')
 

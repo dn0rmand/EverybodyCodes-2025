@@ -13,15 +13,7 @@ export class Quest03 extends Quest<number[]> {
   }
 
   distinct(values: number[]): number[] {
-    const visited: number[] = []
-
-    for (const v of values) {
-      visited[v] = v
-    }
-
-    const d = visited.filter(v => v !== undefined)
-
-    return d
+    return Array.from(new Set(values))
   }
 
   part1(crates: number[]): number {

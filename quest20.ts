@@ -98,14 +98,16 @@ export class Quest20 extends Quest<TInput> {
   }
 
   getMoves(input: TInput, { x, y }: TPoint, rotation: number): TPoint[] {
-    let moves: TPoint[] = [{ x: x + 1, y }, { x: x - 1, y }, (x + y) % 2 === 0 ? { x, y: y - 1 } : { x, y: y + 1 }]
+    const moves: TPoint[] = [{ x: x + 1, y }, { x: x - 1, y }, (x + y) % 2 === 0 ? { x, y: y - 1 } : { x, y: y + 1 }]
     if (input.allowRotation) {
       // Can jump in place
       moves.push({ x, y })
     }
-    moves = moves.filter(move => move.x >= 0 && move.x < input.width && move.y >= 0 && move.y < input.height)
-    moves = moves.filter(move => input.get(move.x, move.y, rotation))
-    return moves
+    return moves.filter(move => 
+      move.x >= 0 && move.x < input.width && 
+      move.y >= 0 && move.y < input.height &&
+      input.get(move.x, move.y, rotation)
+    )
   }
 
   getJumps(input: TInput, withRotation: boolean) {
@@ -129,7 +131,7 @@ export class Quest20 extends Quest<TInput> {
             return jumps
           }
 
-          const key = (newState.x + newState.y * input.width) * 4 + rotation
+          const key = (newState.x + newState.y * input.width) << 2 + rotation
           if (visited.has(key)) {
             continue
           }

@@ -20,7 +20,7 @@ import { Quest18 } from './quest18.ts'
 import { Quest19 } from './quest19.ts'
 import { Quest20 } from './quest20.ts'
 
-const days: IQuest[] = [
+const quests: IQuest[] = [
   new Quest01(),
   new Quest02(),
   new Quest03(),
@@ -58,7 +58,7 @@ const output = console.log
 
 console.debug = () => {}
 
-const dayLog = (buffer: string[]) => (msg: string) => {
+const questLog = (buffer: string[]) => (msg: string) => {
   buffer.push(msg)
 }
 
@@ -80,12 +80,13 @@ console.timeLog = (key: string, msg: string) => {
 }
 
 function format(value: string | number, length: number, direction: 'L' | 'R' = 'R') {
-  const s = `${value}`
-  if (s.length < length) {
-    return direction === 'L' ? ' '.repeat(length - s.length) + s : s + ' '.repeat(length - s.length)
-  } else {
-    return s.substring(0, length)
+  const s = String(value)
+  const sLen = s.length
+  if (sLen < length) {
+    const padding = ' '.repeat(length - sLen)
+    return direction === 'L' ? padding + s : s + padding
   }
+  return s.substring(0, length)
 }
 
 function executeAll() {
@@ -93,32 +94,32 @@ function executeAll() {
 
   output('┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐')
   output('│ 🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄 The Song of Ducks and Dragons - 2025 🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄 │')
-  output('├─────┬───────────────────────────┬──────────────────────┬─────────────────────────────────────────────┬─────────────┤')
-  output('│ Day │ Title                     │ Part 1               │ Part 2               │ Part 3               │ Time in ms  │')
+  output('├───────┬─────────────────────────┬──────────────────────┬─────────────────────────────────────────────┬─────────────┤')
+  output('│ Quest │ Title                   │ Part 1               │ Part 2               │ Part 3               │ Time in ms  │')
 
-  for (const day of days) {
+  for (const quest of quests) {
     const lines: string[] = []
-    console.log = dayLog(lines)
-    const key = `@day${day.quest}`
-    const msg = `to execute both parts of day ${day.quest}`
+    console.log = questLog(lines)
+    const key = `@quest${quest.quest}`
+    const msg = `to execute all 3 parts of quest ${quest.quest}`
     console.time(key)
-    day.execute()
+    quest.execute()
     console.timeLog(key, msg)
 
     const p1 = lines[1].split('Part 1: ')[1]
     const p2 = lines[2].split('Part 2: ')[1]
     const p3 = lines[3].split('Part 3: ')[1]
-    const duration = times[`@day${day.quest}`].duration
+    const duration = times[`@quest${quest.quest}`].duration
     const ms = `${duration.toFixed(4)} ms`
 
-    output('├─────┼───────────────────────────┼──────────────────────┼──────────────────────┼──────────────────────┼─────────────┤')
-    output(`│ ${format(day.quest, 3, 'L')} │ ${format(day.title, 25)} │ ${format(p1, 20)} │ ${format(p2, 20)} │ ${format(p3, 20)} │ ${format(ms, 11, 'L')} │`)
+    output('├───────┼─────────────────────────┼──────────────────────┼──────────────────────┼──────────────────────┼─────────────┤')
+    output(`│ ${format(quest.quest, 5, 'L')} │ ${format(quest.title, 23)} │ ${format(p1, 20)} │ ${format(p2, 20)} │ ${format(p3, 20)} │ ${format(ms, 11, 'L')} │`)
   }
   console.timeLog('@advent-2025', 'to execute them all')
 
   const total = `${times['@advent-2025'].duration.toFixed(4)} ms`
 
-  output('└─────┴───────────────────────────┴──────────────────────┴──────────────────────┴──────────────────────┼─────────────┤')
+  output('└───────┴─────────────────────────┴──────────────────────┴──────────────────────┴──────────────────────┼─────────────┤')
   output(`                                                                                                       │ ${format(total, 11, 'L')} │`)
   output('                                                                                                       └─────────────┘')
 
