@@ -4,13 +4,18 @@ export interface IQuest {
   execute(): void
 }
 
+console.log(Deno.cwd())
+const dataPath = Deno.cwd().endsWith('/2025') ? '.' : '..'
+
 export abstract class Quest<T> implements IQuest {
   public quest: number
   public title: string
+  private folder: string
 
-  constructor(quest: number, title?: string) {
+  constructor(quest: number, story: number = 0, title: string | undefined = undefined) {
     this.quest = quest
-    this.title = title ?? `Quest ${quest}`
+    this.title = title ?? `${story ? `Story ${story}, Quest ` : 'Quest '} ${quest}`
+    this.folder = story ? `Story${story}/data/quest${this.quest}` : `Quests/data/quest${this.quest}`
   }
 
   abstract part1(input: T): number | string
@@ -29,7 +34,7 @@ export abstract class Quest<T> implements IQuest {
   }
 
   readDataFile(part: number): string[] {
-    const data = Deno.readTextFileSync(`./data/quest${this.quest}/${part}.raw`)
+    const data = Deno.readTextFileSync(`${dataPath}/${this.folder}/${part}.raw`)
     return data.split('\n')
   }
 

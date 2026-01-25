@@ -1,4 +1,4 @@
-import { Quest } from './tools/quest.ts'
+import { Quest } from '../quest.ts'
 
 type TPosition = {
   x: number

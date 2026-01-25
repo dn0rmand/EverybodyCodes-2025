@@ -1,4 +1,4 @@
-import { Quest } from './tools/quest.ts'
+import { Quest } from '../quest.ts'
 
 type TPoint = {
   x: number
@@ -103,11 +103,7 @@ export class Quest20 extends Quest<TInput> {
       // Can jump in place
       moves.push({ x, y })
     }
-    return moves.filter(move => 
-      move.x >= 0 && move.x < input.width && 
-      move.y >= 0 && move.y < input.height &&
-      input.get(move.x, move.y, rotation)
-    )
+    return moves.filter(move => move.x >= 0 && move.x < input.width && move.y >= 0 && move.y < input.height && input.get(move.x, move.y, rotation))
   }
 
   getJumps(input: TInput, withRotation: boolean) {
@@ -131,7 +127,7 @@ export class Quest20 extends Quest<TInput> {
             return jumps
           }
 
-          const key = (newState.x + newState.y * input.width) << 2 + rotation
+          const key = (newState.x + newState.y * input.width) << (2 + rotation)
           if (visited.has(key)) {
             continue
           }

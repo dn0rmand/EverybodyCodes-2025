@@ -1,4 +1,4 @@
-import { Quest } from './tools/quest.ts'
+import { Quest } from '../quest.ts'
 
 type TInstruction = {
   direction: 'L' | 'R'
@@ -58,7 +58,7 @@ export class Quest15 extends Quest<TInstruction[]> {
 
   get(map: TMap, pt: TPoint): ENTRY {
     const row = map.data.get(pt.y)
-    return row ? row.get(pt.x) ?? ENTRY.EMPTY : ENTRY.EMPTY
+    return row ? (row.get(pt.x) ?? ENTRY.EMPTY) : ENTRY.EMPTY
   }
 
   set(map: TMap, pt: TPoint, value: ENTRY) {

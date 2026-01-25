@@ -1,24 +1,27 @@
-import { IQuest } from './tools/quest.ts'
-import { Quest01 } from './quest01.ts'
-import { Quest02 } from './quest02.ts'
-import { Quest03 } from './quest03.ts'
-import { Quest04 } from './quest04.ts'
-import { Quest05 } from './quest05.ts'
-import { Quest06 } from './quest06.ts'
-import { Quest07 } from './quest07.ts'
-import { Quest08 } from './quest08.ts'
-import { Quest09 } from './quest09.ts'
-import { Quest10 } from './quest10.ts'
-import { Quest11 } from './quest11.ts'
-import { Quest12 } from './quest12.ts'
-import { Quest13 } from './quest13.ts'
-import { Quest14 } from './quest14.ts'
-import { Quest15 } from './quest15.ts'
-import { Quest16 } from './quest16.ts'
-import { Quest17 } from './quest17.ts'
-import { Quest18 } from './quest18.ts'
-import { Quest19 } from './quest19.ts'
-import { Quest20 } from './quest20.ts'
+import { IQuest } from './quest.ts'
+import { Quest01 } from './Quests/quest01.ts'
+import { Quest02 } from './Quests/quest02.ts'
+import { Quest03 } from './Quests/quest03.ts'
+import { Quest04 } from './Quests/quest04.ts'
+import { Quest05 } from './Quests/quest05.ts'
+import { Quest06 } from './Quests/quest06.ts'
+import { Quest07 } from './Quests/quest07.ts'
+import { Quest08 } from './Quests/quest08.ts'
+import { Quest09 } from './Quests/quest09.ts'
+import { Quest10 } from './Quests/quest10.ts'
+import { Quest11 } from './Quests/quest11.ts'
+import { Quest12 } from './Quests/quest12.ts'
+import { Quest13 } from './Quests/quest13.ts'
+import { Quest14 } from './Quests/quest14.ts'
+import { Quest15 } from './Quests/quest15.ts'
+import { Quest16 } from './Quests/quest16.ts'
+import { Quest17 } from './Quests/quest17.ts'
+import { Quest18 } from './Quests/quest18.ts'
+import { Quest19 } from './Quests/quest19.ts'
+import { Quest20 } from './Quests/quest20.ts'
+
+import { Quest01 as Story1Quest01 } from './Story1/quest01.ts'
+import { Quest02 as Story1Quest02 } from './Story1/quest02.ts'
 
 const quests: IQuest[] = [
   new Quest01(),
@@ -41,6 +44,9 @@ const quests: IQuest[] = [
   new Quest18(),
   new Quest19(),
   new Quest20(),
+
+  new Story1Quest01(),
+  new Story1Quest02(),
 ]
 
 type TimeEntry = {
