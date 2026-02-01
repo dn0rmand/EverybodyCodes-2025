@@ -11,6 +11,16 @@ export abstract class Quest<T> implements IQuest {
   public quest: number
   public title: string
   private folder: string
+  private encoder: TextEncoder | undefined = undefined
+
+  writeSync(data: string): void {
+    if (this.encoder === undefined) {
+      this.encoder = new TextEncoder()
+    }
+    const buffer = this.encoder.encode(data)
+
+    Deno.stdout.writeSync(buffer)
+  }
 
   constructor(quest: number, story: number = 0, title: string | undefined = undefined) {
     this.quest = quest
