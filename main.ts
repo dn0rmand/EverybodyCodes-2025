@@ -28,6 +28,10 @@ import { Quest01 as Story2Quest01 } from './Story2/quest01.ts'
 import { Quest02 as Story2Quest02 } from './Story2/quest02.ts'
 import { Quest03 as Story2Quest03 } from './Story2/quest03.ts'
 
+import { Quest01 as Story3Quest01 } from './Story3/quest01.ts'
+import { Quest02 as Story3Quest02 } from './Story3/quest02.ts'
+import { Quest03 as Story3Quest03 } from './Story3/quest03.ts'
+
 const quests: IQuest[] = [
   new Quest01(),
   new Quest02(),
@@ -57,6 +61,10 @@ const quests: IQuest[] = [
   new Story2Quest01(),
   new Story2Quest02(),
   new Story2Quest03(),
+
+  new Story3Quest01(),
+  new Story3Quest02(),
+  new Story3Quest03(),
 ]
 
 type TimeEntry = {
